@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupNavigation();
     loadEnrolledCourses();
     setupJoinModal();
-    
+
     // Auto-refresh pending requests every 30 seconds when that section is active
     setInterval(() => {
         const pendingSection = document.getElementById('pending-section');
@@ -42,8 +42,8 @@ function setupNavigation() {
             switch (sectionName) {
                 case 'courses': loadEnrolledCourses(); break;
                 case 'available': loadAvailableCourses(); break;
-                case 'pending': 
-                    loadPendingRequests(); 
+                case 'pending':
+                    loadPendingRequests();
                     // Also refresh enrolled courses in case a request was just approved
                     setTimeout(() => loadEnrolledCourses(), 500);
                     break;
@@ -113,7 +113,7 @@ async function loadEnrolledCourses() {
         } else {
             console.log('No enrolled courses found');
             let message = '<p>You are not enrolled in any courses yet. Check "Available Courses" to join!</p>';
-            
+
             // Show debug info if available
             if (data.debug) {
                 message += `<div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 12px;">
@@ -124,7 +124,7 @@ async function loadEnrolledCourses() {
                     <em>If you're enrolled but courses don't show, check database connection.</em>
                 </div>`;
             }
-            
+
             container.innerHTML = message;
             console.warn('No enrolled courses found. Debug info:', data.debug || 'none');
         }
@@ -224,13 +224,21 @@ async function loadAvailableCourses() {
                     console.log('  Course Code:', cCode);
                     console.log('  Course Name:', cName);
 
+                    // DEBUG: Show ID to user
+                    // alert('Debug: Joining Course ID: ' + cId);
+
+                    if (!cId) {
+                        alert('Error: Course ID is missing from the button. Please refresh the page.');
+                        return;
+                    }
+
                     openJoinModal(cId, cCode, cName);
                 });
             });
         } else {
             console.log('No available courses found');
             let message = '<p>No available courses at the moment.</p>';
-            
+
             // Show debug info if available
             if (data.debug) {
                 message += `<div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 12px;">
@@ -240,7 +248,7 @@ async function loadAvailableCourses() {
                     <em>If courses exist but don't show, check database connection.</em>
                 </div>`;
             }
-            
+
             container.innerHTML = message;
             console.warn('No available courses found. Debug info:', data.debug || 'none');
         }
@@ -440,6 +448,11 @@ async function handleJoinSubmit(e) {
             `,
             confirmButtonColor: '#722f37'
         });
+
+        // DEBUG: Help user find the issue
+        alert('Debug: Hidden Input = ' + (hiddenInput ? 'Found' : 'Missing') +
+            ', Value = "' + (hiddenInput ? hiddenInput.value : 'N/A') + '"');
+
         return;
     }
 
