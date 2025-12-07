@@ -1,0 +1,46 @@
+# Apache Configuration for Attendance Management System
+
+# Enable rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Prevent directory listing
+    Options -Indexes
+    
+    # Redirect to index.php if file doesn't exist (optional)
+    # RewriteCond %{REQUEST_FILENAME} !-f
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Enable PHP error reporting (disable in production)
+# php_flag display_errors On
+# php_value error_reporting E_ALL
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "\.(env|log|ini|conf)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow access to CSS, JS, and images
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Set PHP upload limits (adjust as needed)
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+

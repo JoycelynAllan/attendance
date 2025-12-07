@@ -1,0 +1,377 @@
+/* dashboard.css - Enhanced dashboard styles */
+
+body {
+    background: linear-gradient(135deg, var(--wine-primary) 0%, var(--wine-dark) 100%);
+    display: block;
+    min-height: 100vh;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    color: var(--wine-primary);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Section Navigation */
+.section-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-top: 2px solid var(--off-white);
+    padding-top: 20px;
+}
+
+.nav-link {
+    padding: 10px 20px;
+    background: var(--off-white);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    background: var(--white);
+    border-color: var(--wine-light);
+}
+
+.nav-link.active {
+    background: var(--wine-primary);
+    color: var(--white);
+    border-color: var(--wine-primary);
+}
+
+/* Dashboard Sections */
+.dashboard-section {
+    display: none;
+}
+
+.dashboard-section.active {
+    display: block;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--off-white);
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 2px solid var(--gray-light);
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filter-info small {
+    color: var(--gray-medium);
+    font-style: italic;
+}
+
+/* Course Items */
+.course-item {
+    padding: 20px;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+    background: var(--white);
+}
+
+.course-item:hover {
+    border-color: var(--wine-primary);
+    box-shadow: 0 3px 10px rgba(114, 47, 55, 0.2);
+}
+
+.course-item h4 {
+    color: var(--wine-primary);
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.course-item p {
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.course-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.course-meta small {
+    display: block;
+    color: var(--gray-medium);
+    font-size: 13px;
+}
+
+.course-item.pending {
+    border-color: #ffc107;
+    background: #fffbf0;
+}
+
+.course-item button {
+    margin-top: 10px;
+}
+
+/* Request Items */
+.request-item {
+    padding: 20px;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.request-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.request-info h4 {
+    color: var(--wine-primary);
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.request-info p {
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.request-info small {
+    display: block;
+    color: var(--gray-medium);
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.request-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.badge-warning {
+    background: #ffc107;
+    color: var(--black);
+}
+
+.badge-regular {
+    background: #28a745;
+    color: var(--white);
+}
+
+.badge-auditor {
+    background: #17a2b8;
+    color: var(--white);
+}
+
+.badge-observer {
+    background: #6c757d;
+    color: var(--white);
+}
+
+/* Radio Group for Enrollment Types */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.radio-option:hover {
+    border-color: var(--wine-light);
+    background: var(--off-white);
+}
+
+.radio-option input[type="radio"] {
+    margin-right: 15px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"]:checked + .radio-content {
+    color: var(--wine-primary);
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+    border-color: var(--wine-primary);
+    background: #fff5f7;
+}
+
+.radio-content {
+    flex: 1;
+}
+
+.radio-content strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.radio-content small {
+    color: var(--gray-medium);
+    font-size: 13px;
+}
+
+/* Course Info Display */
+.course-info-display {
+    padding: 15px;
+    background: var(--off-white);
+    border-radius: 8px;
+    border-left: 4px solid var(--wine-primary);
+}
+
+.course-info-display h3 {
+    color: var(--wine-primary);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.course-info-display p {
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Empty States */
+.card p:only-child {
+    text-align: center;
+    color: var(--gray-medium);
+    padding: 40px 20px;
+    font-style: italic;
+}
+
+/* Loading States */
+.loading {
+    text-align: center;
+    padding: 30px;
+    color: var(--gray-medium);
+}
+
+.loading::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+/* Modal Updates */
+.modal-content h2 {
+    color: var(--wine-primary);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--off-white);
+}
+
+.modal-content .form-group {
+    margin-bottom: 20px;
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Responsive Dashboard */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .section-nav {
+        justify-content: center;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .request-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .request-actions {
+        width: 100%;
+    }
+    
+    .request-actions button {
+        flex: 1;
+    }
+    
+    .radio-option {
+        flex-direction: column;
+    }
+    
+    .radio-option input[type="radio"] {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
