@@ -84,7 +84,7 @@ header('Content-Type: text/html; charset=utf-8');
         <table>
             <tr><th>Table</th><th>Count</th><th>Last ID</th></tr>
             <?php
-            $tables = ['courses', 'users', 'Enrollment', 'sessions'];
+            $tables = ['courses', 'users', 'enrollment', 'sessions'];
             foreach ($tables as $table) {
                 try {
                     // Check if table exists first
@@ -101,7 +101,7 @@ header('Content-Type: text/html; charset=utf-8');
                     $idCol = 'id';
                     if ($table == 'courses') $idCol = 'course_id';
                     if ($table == 'users') $idCol = 'user_id';
-                    if ($table == 'Enrollment') $idCol = 'enrollment_id';
+                    if ($table == 'enrollment') $idCol = 'enrollment_id';
                     if ($table == 'sessions') $idCol = 'session_id';
                     
                     try {

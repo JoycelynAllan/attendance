@@ -74,7 +74,7 @@ try {
     error_log("Join course error: " . $e->getMessage());
     echo json_encode([
         'success' => false,
-        'message' => 'Failed to submit request'
+        'message' => 'Database Error: ' . $e->getMessage()
     ]);
 }
 ?>
