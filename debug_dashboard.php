@@ -160,7 +160,7 @@ header('Content-Type: text/html; charset=utf-8');
                 }
             } elseif ($role === 'student') {
                 // Check Enrollment
-                $sql = "SELECT e.*, c.course_code FROM Enrollment e JOIN courses c ON e.course_id = c.course_id WHERE e.student_id = ?";
+                $sql = "SELECT e.*, c.course_code FROM enrollment e JOIN courses c ON e.course_id = c.course_id WHERE e.student_id = ?";
                 echo "<p>Running Enrollment Query: <code>$sql</code> with ID: $user_id</p>";
                 try {
                     $stmt = $conn->prepare($sql);
