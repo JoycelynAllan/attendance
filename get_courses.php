@@ -59,7 +59,7 @@ try {
                    u_intern.email as intern_email,
                    COUNT(CASE WHEN e.status = 'approved' THEN 1 END) as enrolled_count
             FROM courses c
-            LEFT JOIN Enrollment e ON c.course_id = e.course_id
+            LEFT JOIN enrollment e ON c.course_id = e.course_id
             INNER JOIN users u_faculty ON c.faculty_id = u_faculty.user_id
             LEFT JOIN users u_intern ON c.intern_id = u_intern.user_id
             WHERE c.faculty_id = ?
@@ -86,7 +86,7 @@ try {
                        u_intern.last_name as intern_last_name,
                        u_intern.email as intern_email,
                        e.requested_at
-                FROM Enrollment e
+                FROM enrollment e
                 INNER JOIN courses c ON e.course_id = c.course_id
                 INNER JOIN users u_faculty ON c.faculty_id = u_faculty.user_id
                 LEFT JOIN users u_intern ON c.intern_id = u_intern.user_id
@@ -111,7 +111,7 @@ try {
                        u_intern.last_name as intern_last_name,
                        u_intern.email as intern_email,
                        e.enrollment_type, e.requested_at, e.status
-                FROM Enrollment e
+                FROM enrollment e
                 INNER JOIN courses c ON e.course_id = c.course_id
                 INNER JOIN users u_faculty ON c.faculty_id = u_faculty.user_id
                 LEFT JOIN users u_intern ON c.intern_id = u_intern.user_id
@@ -139,7 +139,7 @@ try {
                 LEFT JOIN users u_intern ON c.intern_id = u_intern.user_id
                 WHERE c.course_id NOT IN (
                     SELECT course_id 
-                    FROM Enrollment 
+                    FROM enrollment  
                     WHERE student_id = ?
                 )
                 ORDER BY c.course_code ASC
@@ -169,7 +169,7 @@ try {
             FROM courses c
             INNER JOIN users u_faculty ON c.faculty_id = u_faculty.user_id
             LEFT JOIN users u_intern ON c.intern_id = u_intern.user_id
-            LEFT JOIN Enrollment e ON c.course_id = e.course_id
+            LEFT JOIN enrollment e ON c.course_id = e.course_id
             GROUP BY c.course_id
             ORDER BY c.course_code ASC
         ");

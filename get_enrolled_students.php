@@ -47,7 +47,7 @@ try {
     $stmt = $conn->prepare("
         SELECT u.user_id, u.first_name, u.last_name, u.email, u.username,
                e.enrollment_type, e.requested_at
-        FROM Enrollment e
+        FROM enrollment e
         INNER JOIN users u ON e.student_id = u.user_id
         WHERE e.course_id = ? AND e.status = 'approved' AND u.role = 'student'
         ORDER BY u.last_name ASC, u.first_name ASC

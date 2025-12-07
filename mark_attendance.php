@@ -75,7 +75,7 @@ try {
     
     // Verify student is enrolled in the course
     $stmt = $conn->prepare("
-        SELECT enrollment_id FROM Enrollment 
+        SELECT enrollment_id FROM enrollment 
         WHERE course_id = ? AND student_id = ? AND status = 'approved'
     ");
     $stmt->execute([$session['course_id'], $student_id]);

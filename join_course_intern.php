@@ -48,7 +48,7 @@ try {
     }
     
     // Check if already enrolled
-    $stmt = $conn->prepare("SELECT enrollment_id FROM Enrollment WHERE student_id = ? AND course_id = ?");
+    $stmt = $conn->prepare("SELECT enrollment_id FROM enrollment WHERE student_id = ? AND course_id = ?");
     $stmt->execute([$intern_id, $course_id]);
     
     if ($stmt->rowCount() > 0) {
@@ -65,7 +65,7 @@ try {
     
     // 2. Auto-enroll with 'approved' status (no faculty approval needed)
     $stmt = $conn->prepare("
-        INSERT INTO Enrollment (student_id, course_id, enrollment_type, status, requested_at, reviewed_at) 
+        INSERT INTO enrollment (student_id, course_id, enrollment_type, status, requested_at, reviewed_at) 
         VALUES (?, ?, 'observer', 'approved', NOW(), NOW())
     ");
     $stmt->execute([$intern_id, $course_id]);

@@ -43,7 +43,7 @@ try {
     }
     
     // Check if already enrolled or has pending request
-    $stmt = $conn->prepare("SELECT status FROM Enrollment WHERE student_id = ? AND course_id = ?");
+    $stmt = $conn->prepare("SELECT status FROM enrollment WHERE student_id = ? AND course_id = ?");
     $stmt->execute([$student_id, $course_id]);
     
     if ($stmt->rowCount() > 0) {
@@ -60,7 +60,7 @@ try {
     
     // Create enrollment request (pending faculty approval)
     $stmt = $conn->prepare("
-        INSERT INTO Enrollment (student_id, course_id, enrollment_type, status, requested_at) 
+        INSERT INTO enrollment (student_id, course_id, enrollment_type, status, requested_at) 
         VALUES (?, ?, ?, 'pending', NOW())
     ");
     $stmt->execute([$student_id, $course_id, $enrollment_type]);

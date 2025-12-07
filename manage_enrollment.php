@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                    c.course_code, c.course_name, 
                    u.first_name, u.last_name, u.email, u.username,
                    s.enrollment_type as student_enrollment_type
-            FROM Enrollment e
+            FROM enrollment e
             INNER JOIN courses c ON e.course_id = c.course_id
             INNER JOIN users u ON e.student_id = u.user_id
             LEFT JOIN students s ON e.student_id = s.student_id
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // Verify the enrollment belongs to a course owned by this faculty
         $stmt = $conn->prepare("
             SELECT e.student_id, e.course_id, e.enrollment_type
-            FROM Enrollment e
+            FROM enrollment e
             INNER JOIN courses c ON e.course_id = c.course_id
             WHERE e.enrollment_id = ? AND c.faculty_id = ? AND e.status = 'pending'
         ");
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         if ($action === 'approve') {
             // Update status to approved
             $stmt = $conn->prepare("
-                UPDATE Enrollment 
+                UPDATE enrollment
                 SET status = 'approved', reviewed_at = NOW() 
                 WHERE enrollment_id = ?
             ");
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } elseif ($action === 'reject') {
             // Update status to rejected
             $stmt = $conn->prepare("
-                UPDATE Enrollment 
+                UPDATE enrollment
                 SET status = 'rejected', reviewed_at = NOW() 
                 WHERE enrollment_id = ?
             ");
